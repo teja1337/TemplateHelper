@@ -14,8 +14,9 @@ def build_exe():
     print("🔨 Начинаю сборку Helper.exe и updater.exe...")
     print("=" * 60)
     
-    # Путь к текущей директории
-    project_dir = os.path.dirname(os.path.abspath(__file__))
+    # Пути
+    scripts_dir = os.path.dirname(os.path.abspath(__file__))
+    project_dir = os.path.dirname(scripts_dir)  # Родительская папка (корень проекта)
     dist_dir = os.path.join(project_dir, 'dist')
     build_dir = os.path.join(project_dir, 'build')
     
@@ -39,6 +40,7 @@ def build_exe():
         '--windowed',
         '--name', 'Helper',
         '--add-data', f'{os.path.join(project_dir, "version.json")};.',
+        '--add-data', f'{os.path.join(project_dir, "icon.ico")};.',
         '--distpath', dist_dir,
         '--workpath', build_dir,
         '--specpath', project_dir,
@@ -69,7 +71,7 @@ def build_exe():
         '--distpath', dist_dir,
         '--workpath', build_dir,
         '--specpath', project_dir,
-        os.path.join(project_dir, 'updater.py'),
+        os.path.join(project_dir, 'scripts', 'updater.py'),
         '-y'
     ]
     

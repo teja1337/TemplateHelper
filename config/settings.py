@@ -65,15 +65,21 @@ class PATHS:
         icon_paths = []
         
         if getattr(sys, 'frozen', False):
+            # Запуск как скомпилированное приложение
             exe_dir = Path(sys.executable).parent
+            
+            # 1. В папке вместе с .exe (обычно Program Files\Helper)
             icon_paths.append(exe_dir / PATHS.ICON_FILE)
             
+            # 2. В распакованных файлах PyInstaller (если есть _MEIPASS)
             if hasattr(sys, '_MEIPASS'):
                 icon_paths.append(Path(sys._MEIPASS) / PATHS.ICON_FILE)
         else:
+            # Запуск как скрипт (development)
             icon_paths.append(Path(__file__).parent.parent / PATHS.ICON_FILE)
         
-        return [p for p in icon_paths if p]
+        # Вернуть только существующие пути
+        return [p for p in icon_paths if p.exists()]
     
     @staticmethod
     def get_updater_path():
