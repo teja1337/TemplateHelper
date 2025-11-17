@@ -23,6 +23,7 @@ LicenseFile=
 OutputDir=dist
 OutputBaseFilename=Helper_Installer
 SetupIconFile=installer_icon.ico
+UninstallDisplayIcon={app}\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
