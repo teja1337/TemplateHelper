@@ -2,6 +2,9 @@ import customtkinter as ctk
 from typing import TYPE_CHECKING
 import threading
 import time
+import json
+from pathlib import Path
+import sys
 
 if TYPE_CHECKING:
     from models.template_manager import TemplateManager
@@ -31,6 +34,27 @@ class MainWindow:
         
         # Проверка обновлений при запуске
         self.check_updates_on_startup()
+    
+    @staticmethod
+    def get_app_version():
+        """Получить версию приложения из version.json"""
+        try:
+            # Определяем путь к version.json
+            if getattr(sys, 'frozen', False):
+                # Если запущен как .exe
+                version_path = Path(sys.executable).parent / "version.json"
+            else:
+                # Если запущен как скрипт
+                version_path = Path(__file__).parent.parent / "version.json"
+            
+            if version_path.exists():
+                with open(version_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    return data.get('version', '0.0.1')
+        except Exception as e:
+            print(f"Ошибка при получении версии: {e}")
+        
+        return "0.0.1"
     
     def setup_context_menu_for_widget(self, widget: ctk.CTkBaseClass) -> None:
         """Добавить горячие клавиши для текстового виджета"""
@@ -306,7 +330,7 @@ class MainWindow:
         
         version_label = ctk.CTkLabel(
             info_frame,
-            text="v0.0.1",
+            text=f"v{self.get_app_version()}",
             font=("Segoe UI", 10),
             text_color="#808080"
         )
