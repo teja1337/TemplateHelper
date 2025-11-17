@@ -47,10 +47,10 @@ def build_exe():
     ]
     
     # Добавляем иконку если она существует
-    icon_path = os.path.join(project_dir, 'helper.ico')
+    icon_path = os.path.join(project_dir, 'icon.ico')
     if os.path.exists(icon_path):
-        pyinstaller_cmd.insert(5, icon_path)
-        pyinstaller_cmd.insert(4, '--icon')
+        pyinstaller_cmd.extend(['--icon', icon_path])
+        print(f"   ✓ Добавлена иконка: {icon_path}")
     
     try:
         result = subprocess.run(pyinstaller_cmd, check=True)

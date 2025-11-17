@@ -6,13 +6,16 @@ class TemplateManager:
     """Класс для управления шаблонами и категориями"""
     
     def __init__(self):
-        # Получаем путь к директории приложения
-        self.app_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # Получаем путь к директории данных пользователя (AppData)
+        self.app_data_dir = os.path.join(os.getenv('APPDATA'), 'Helper')
+        
+        # Создаём директорию если её нет
+        os.makedirs(self.app_data_dir, exist_ok=True)
         
         self.current_category_type = "Клиенты"
         self.files = {
-            "Клиенты": os.path.join(self.app_dir, "templates_clients.json"),
-            "Коллеги": os.path.join(self.app_dir, "templates_colleagues.json")
+            "Клиенты": os.path.join(self.app_data_dir, "templates_clients.json"),
+            "Коллеги": os.path.join(self.app_data_dir, "templates_colleagues.json")
         }
         self.categories: Dict[str, List[Dict]] = {}
         self.load_templates()

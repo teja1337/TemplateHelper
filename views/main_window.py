@@ -37,12 +37,23 @@ class MainWindow:
     
     @staticmethod
     def get_app_version():
-        """Получить версию приложения из version.json"""
+        """Получить версию приложения"""
+        # Сначала пытаемся импортировать из version.py
+        try:
+            from version import VERSION
+            return VERSION
+        except ImportError:
+            pass
+        
+        # Fallback - читаем из version.json
         try:
             # Определяем путь к version.json
             if getattr(sys, 'frozen', False):
-                # Если запущен как .exe
-                version_path = Path(sys.executable).parent / "version.json"
+                # PyInstaller
+                if hasattr(sys, '_MEIPASS'):
+                    version_path = Path(sys._MEIPASS) / "version.json"
+                else:
+                    version_path = Path(sys.executable).parent / "version.json"
             else:
                 # Если запущен как скрипт
                 version_path = Path(__file__).parent.parent / "version.json"
@@ -1156,4 +1167,4 @@ class MainWindow:
         ok_btn.pack(pady=10)
         
         # Обработка горячих клавиш
-        dialog.bind('<Escape>', lambda e: on_cancel())
+        error_dialog.bind('<Escape>', lambda e: error_dialog.destroy())

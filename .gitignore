@@ -14,6 +14,7 @@ dist/
 *.dll
 *.so
 *.dylib
+*.ico
 
 # IDE
 .vscode/
@@ -28,5 +29,24 @@ Thumbs.db
 *.log
 
 # Временные файлы
+
+# SECURITY: Deployment and test scripts with tokens
+check_release.py
+check_v2.0.2.py
+check_v2_release.py
+list_releases.py
+upload_remaining.py
+upload_to_release.py
+quick_deploy.py
+deploy.py
+test_updater.py
+auto_deploy.py
+create_icon.py
+create_icons.py
+
+# Environment and secrets
+.env
+*.token
+.secrets
 *.tmp
 *.temp

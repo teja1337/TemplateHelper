@@ -8,9 +8,9 @@ def main():
     ctk.set_appearance_mode("dark")
     ctk.set_default_color_theme("dark-blue")
     
-    # Создание корневого окна БЕЗ РАМОК (frameless)
+    # Создание корневого окна с нормальным управлением
     root = ctk.CTk()
-    root.overrideredirect(True)
+    # Больше не скрываем окно из панели задач!
     
     # Инициализация менеджера шаблонов
     template_manager = TemplateManager()

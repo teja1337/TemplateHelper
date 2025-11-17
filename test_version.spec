@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['main.py'],
+    ['test_version.py'],
     pathex=[],
     binaries=[],
     datas=[('version.json', '.')],
@@ -22,18 +22,17 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='Helper',
+    name='test_version',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,
+    console=True,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['icon.ico'],
 )
