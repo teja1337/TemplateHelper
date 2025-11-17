@@ -11,7 +11,7 @@ def build_exe():
     """Создание исполняемых файлов Helper.exe и updater.exe"""
     
     print("=" * 60)
-    print("🔨 Начинаю сборку Helper.exe и updater.exe...")
+    print("[*] Начинаю сборку Helper.exe и updater.exe...")
     print("=" * 60)
     
     # Пути

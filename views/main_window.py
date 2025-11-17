@@ -150,14 +150,11 @@ class MainWindow:
             if icon_path:
                 try:
                     self.root.iconbitmap(str(icon_path))
-                    print(f"[DEBUG] ✅ Иконка успешно загружена: {icon_path}")
                 except Exception as e:
-                    print(f"[DEBUG] ❌ iconbitmap ошибка: {e}")
-            else:
-                print(f"[DEBUG] ⚠️ Иконка не найдена")
-                
+                    pass
+            
         except Exception as e:
-            print(f"[DEBUG] ❌ Ошибка при загрузке иконки: {e}")
+            pass
         
         # Получаем размеры экрана
         screen_width = self.root.winfo_screenwidth()

@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['C:\\Code\\Helper\\scripts\\updater.py'],
+    ['scripts\\updater.py'],
     pathex=[],
     binaries=[],
     datas=[],
